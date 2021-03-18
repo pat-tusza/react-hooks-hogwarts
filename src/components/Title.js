@@ -13,29 +13,19 @@ import trouble from '../assets/trouble.jpg'
 import truffleShuffle from '../assets/truffle_shuffle.jpg'
 import augustus from '../assets/augustus_gloop.jpg'
 
-// const hogPic = {
-//     "Babe": {babe},
-//     "Bailey": {bailey},
-//     "Cherub": {cherub},
-//     "Galaxy Note": {galaxyNote},
-//     "Leggo My Eggo": {leggoMyEggo},
-//     "Peppa": {peppa},
-//     "Piggy Smalls": {piggySmalls},
-//     "Porkchop": {porkchop},
-//     "Trouble": {trouble},
-//     "Truffle Shuffle": {truffleShuffle},
-//     "Piglet": {piglet}
-// }
-const Title = ({hog}) => {
+const Title = ({theHog}) => {
     const [info, setInfo] = useState(false)
     
     function handlePigClick(e){
         setInfo(!info)
-        console.log(e.target, info)
+    }
+
+    const handleDelete = () =>{
+        theHog.deleteCallback.callbackNameToDelete(theHog.theHog.hog.name)
     }
 
     function pigPic(){
-        switch(hog.name){
+        switch(theHog.theHog.hog.name){
             case "Augustus Gloop":
                 return augustus
             case "Babe": 
@@ -61,16 +51,16 @@ const Title = ({hog}) => {
             case "Piglet":
                 return piglet
             default: 
-            return "Butts"
+                return "Butts"
         }
-
     }
 
     return (
         <div>
-            <p>{hog.name}</p>
-            <img src= {pigPic()} alt ={hog.name} onClick ={handlePigClick}/>
-            {info? <Greased theHog= {hog} /> : null} 
+            <p>{theHog.theHog.hog.name}</p>
+            <button onClick={handleDelete}>Delete this Pig</button><br></br>
+            <img src= {pigPic()} alt ={theHog.theHog.hog.name} onClick ={handlePigClick}/>
+            {info? <Greased theHog= {theHog.theHog.hog} /> : null} 
         </div>
     )
 }
